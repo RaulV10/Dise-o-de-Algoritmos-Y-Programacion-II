@@ -85,8 +85,6 @@ int main() {
 	p = p - n;
 	
 	// Liberar Memoria
-	free(p->nombrePel);
-	free(p->precio);
 	free(p);
 	
 	return 0;
