@@ -10,8 +10,8 @@
 #include <stdlib.h>
 
 typedef struct {
-    long int matricula;
-    char nombre[30];
+    long int *matricula;
+    char *nombre;
     float promedio;
 }alumnos;
 
@@ -30,7 +30,7 @@ int main() {
 	
 	// Reservar Memoria
 	m.alumno.matricula = (long int*) malloc(sizeof(long int));
-	m.alumno.nombre = (char *) malloc(sizeof(char));
+	m.alumno.nombre = (char *) malloc(20*sizeof(char));
 	
 	// Almacenar informacion
 	printf("Clave de materia: ");
@@ -57,7 +57,26 @@ int main() {
 		}
 	}while(m.alumno.promedio < 0 || m.alumno.promedio > 10);
 	
-	// Mostrar Informacino
+	// Llamar a la funcion Mostrasr
+	mostrar(m);
+	
+	// Liberar Memoria
+	free(m.alumno.matricula);
+	free(m.alumno.nombre);
 	
 	return 0;
+}
+
+void mostrar(materias m) {
+	
+	// Mostrar Informacino
+	printf("\n***** INFORMACION DE LA MATERIA *****\n");
+	printf("Clave de la materia: %s\n", m.claveMateria);
+	printf("Nombre de la materia: %s\n", m.nombreMateria);
+	
+	printf("\n ***** DATOS DEL ALUMNO ***** \n");
+	printf("Matricula: %ld\n", *m.alumno.matricula);
+	printf("Nombre: %s\n", m.alumno.nombre);
+	printf("Promedio: %.2f\n", m.alumno.promedio);
+	
 }
